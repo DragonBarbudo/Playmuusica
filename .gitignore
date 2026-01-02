@@ -30,3 +30,8 @@ dist-ssr
 
 # Netlify
 .netlify
+
+# Supabase
+supabase/.env
+supabase/.env.local
+.supabase

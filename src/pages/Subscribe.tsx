@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import { SUBSCRIPTION_PLANS } from '../services/stripe';
+import { SUBSCRIPTION_PLANS, createCheckoutSession, redirectToCheckout } from '../services/stripe';
 import { Check, Music } from 'lucide-react';
 
 export const Subscribe: React.FC = () => {
@@ -19,10 +19,22 @@ export const Subscribe: React.FC = () => {
     setIsLoading(true);
 
     try {
-      // TODO: Implement Stripe checkout
-      alert('La integración de Stripe requiere configurar Supabase Edge Functions. Ver documentación en src/services/stripe.ts');
+      const plan = SUBSCRIPTION_PLANS[selectedPlan];
+
+      // Create checkout session
+      const { url } = await createCheckoutSession({
+        priceId: plan.stripePriceId,
+        userId: user.id,
+        email: user.email,
+        successUrl: `${window.location.origin}/?success=true`,
+        cancelUrl: `${window.location.origin}/subscribe?cancelled=true`,
+      });
+
+      // Redirect to Stripe checkout
+      await redirectToCheckout(url);
     } catch (error) {
       console.error('Subscription error:', error);
+      alert('Error al crear la sesión de pago. Por favor intenta de nuevo.');
     } finally {
       setIsLoading(false);
     }
