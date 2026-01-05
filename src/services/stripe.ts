@@ -120,7 +120,7 @@ export const SUBSCRIPTION_PLANS = {
     type: 'monthly' as const,
     price: 175,
     currency: 'MXN',
-    stripePriceId: 'prod_TiRH8VI5PyDcqV', // Replace with your actual Stripe Price ID
+    stripePriceId: 'price_1Sl0PHQ0fusBEII0hfjkqWDB',
     features: [
       'Acceso ilimitado a toda la música',
       'Reproducción sin anuncios',
@@ -135,7 +135,7 @@ export const SUBSCRIPTION_PLANS = {
     type: 'annual' as const,
     price: 1925,
     currency: 'MXN',
-    stripePriceId: 'prod_TiRI3MDsULKvvQ', // Replace with your actual Stripe Price ID
+    stripePriceId: 'price_1Sl0Q4Q0fusBEII0NCCbnd8J',
     features: [
       'Acceso ilimitado a toda la música',
       'Reproducción sin anuncios',
