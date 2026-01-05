@@ -11,17 +11,14 @@ export const Subscribe: React.FC = () => {
   const navigate = useNavigate();
 
   const handleSubscribe = async () => {
-    if (!user) {
-      navigate('/login');
-      return;
-    }
+    if (!user) return;
 
     setIsLoading(true);
 
     try {
       const plan = SUBSCRIPTION_PLANS[selectedPlan];
 
-      // Create checkout session
+      // Create checkout session and redirect to Stripe
       const { url } = await createCheckoutSession({
         priceId: plan.stripePriceId,
         userId: user.id,

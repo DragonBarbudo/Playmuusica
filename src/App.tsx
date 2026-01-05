@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './contexts/AuthContext';
 import { PlayerProvider } from './contexts/PlayerContext';
 import { Login } from './pages/Login';
+import { Register } from './pages/Register';
 import { Subscribe } from './pages/Subscribe';
 import { Library } from './pages/Library';
 import { AudioPlayer } from './components/player/AudioPlayer';
@@ -49,6 +50,7 @@ function AppRoutes() {
   return (
     <Routes>
       <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
       <Route
         path="/subscribe"
         element={
@@ -61,9 +63,7 @@ function AppRoutes() {
         path="/"
         element={
           <ProtectedRoute>
-            <SubscriptionRoute>
-              <Library />
-            </SubscriptionRoute>
+            <Library />
           </ProtectedRoute>
         }
       />

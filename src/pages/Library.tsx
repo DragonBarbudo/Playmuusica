@@ -12,6 +12,8 @@ import {
   Search,
   Disc,
   ListMusic,
+  Sparkles,
+  X,
 } from 'lucide-react';
 
 export const Library: React.FC = () => {
@@ -24,14 +26,11 @@ export const Library: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [activeTab, setActiveTab] = useState<'albums' | 'tracks' | 'playlists'>('albums');
+  const [showSubscriptionBanner, setShowSubscriptionBanner] = useState(true);
 
   useEffect(() => {
-    if (!hasActiveSubscription) {
-      navigate('/subscribe');
-    } else {
-      loadMusic();
-    }
-  }, [hasActiveSubscription, navigate]);
+    loadMusic();
+  }, []);
 
   const loadMusic = async () => {
     setIsLoading(true);
@@ -186,6 +185,42 @@ export const Library: React.FC = () => {
           </div>
         </div>
       </header>
+
+      {/* Subscription Banner */}
+      {!hasActiveSubscription && showSubscriptionBanner && (
+        <div className="bg-gradient-to-r from-purple-600 to-pink-600 border-b border-purple-500">
+          <div className="max-w-screen-2xl mx-auto px-6 py-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                <Sparkles className="w-6 h-6 text-yellow-300" />
+                <div>
+                  <h3 className="text-white font-semibold text-lg">
+                    ¡Desbloquea todas las funciones!
+                  </h3>
+                  <p className="text-purple-100 text-sm">
+                    Suscríbete para disfrutar de música ilimitada, descargas offline y más
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-3">
+                <button
+                  onClick={() => navigate('/subscribe')}
+                  className="px-6 py-2 bg-white text-purple-600 font-semibold rounded-lg hover:bg-gray-100 transition-colors"
+                >
+                  Suscribirme ahora
+                </button>
+                <button
+                  onClick={() => setShowSubscriptionBanner(false)}
+                  className="p-2 text-white hover:bg-white/10 rounded-lg transition-colors"
+                  aria-label="Cerrar"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Content */}
       <main className="max-w-screen-2xl mx-auto px-6 py-8">
