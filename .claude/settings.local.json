@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git rebase:*)",
+      "Bash(git push:*)",
+      "Bash(supabase secrets:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nUpdate Stripe price IDs for subscription plans\n\nChanged from product IDs to actual price IDs:\n- Monthly: price_1Sl0PHQ0fusBEII0hfjkqWDB\n- Annual: price_1Sl0Q4Q0fusBEII0NCCbnd8J\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(npm install)",
+      "Bash(curl:*)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "supabase"
+  ]
+}
